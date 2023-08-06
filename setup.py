@@ -3,7 +3,7 @@ import sys, subprocess
 import argparse
 import requests
 import coloredlogs, logging
-
+from git import rmtree
 # ? Parse argument to get repo name
 # ? Install/Update repo
 # ? Find all package.json files
@@ -108,7 +108,8 @@ def main():
     # Delete setup tool after installation
     if args.clear:
         setupFolder = os.getcwd() + "/NodeSetupTool"
-        subprocess.Popen(f"python -c \"import shutil, time; time.sleep(1); shutil.rmtree('{setupFolder}');\"")
+        rmtree(setupFolder + "/.git")
+        subprocess.run(["python", "-c", f"import shutil, time; time.sleep(1); shutil.rmtree('{setupFolder}',ignore_errors=True);"])
         sys.exit(0)
 
 if __name__ == "__main__":
