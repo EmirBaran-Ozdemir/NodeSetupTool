@@ -107,7 +107,7 @@ def main():
 
     # Delete setup tool after installation
     if args.clear:
-        setupFolder = os.getcwd() + "\\NodeSetupTool"
+        setupFolder = os.getcwd() + "/NodeSetupTool"
         subprocess.Popen(f"python -c \"import shutil, time; time.sleep(1); shutil.rmtree('{setupFolder}');\"")
         sys.exit(0)
 
